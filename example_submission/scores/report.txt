@@ -1,0 +1,58 @@
+LEVEL 1 - which generator? (test split)
+  750 clips
+  accuracy  0.797
+  macro_f1  0.798
+
+  confusion matrix (rows = true, columns = predicted)
+                      musicgen  musicldm audioldm2 stable_au  mustango
+  musicgen                 118         8         6        13         5
+  musicldm                   8       121        11         4         6
+  audioldm2                 11         5       119         9         6
+  stable_audio_open          8         9         8       122         3
+  mustango                   7         6        13         6       118
+
+LEVEL 2 - which source, and real vs generated? (test split)
+  900 clips
+  accuracy  0.793
+  macro_f1  0.793
+  real_vs_fake_balanced_accuracy  0.849
+
+  confusion matrix (rows = true, columns = predicted)
+                          real  musicgen  musicldm audioldm2 stable_au  mustango
+  real                     111         5         8         6        12         8
+  musicgen                   6       126         4         5         7         2
+  musicldm                  10         8       117         6         3         6
+  audioldm2                  5         8         7       117         8         5
+  stable_audio_open          2         7         6         9       115        11
+  mustango                   8         3         3         3         5       128
+
+LEVEL 3A - gen5 model on the holdout (real and Suno are unknown)
+  609 clips
+  false alarm on known clips (predicted 'unknown'): 0.030
+  unknown group 'real' detected as unknown: 0.311
+  unknown group 'suno' detected as unknown: 0.325
+
+  where each source goes (share of its clips)
+                      musicgen  musicldm audioldm2 stable_au  mustango   unknown
+  real                    0.16      0.20      0.10      0.11      0.11      0.31
+  musicgen                0.84      0.07      0.02      0.03      0.03      0.02
+  musicldm                0.05      0.74      0.00      0.08      0.08      0.05
+  audioldm2               0.03      0.13      0.70      0.07      0.03      0.03
+  stable_audio_open       0.05      0.08      0.00      0.82      0.03      0.02
+  mustango                0.07      0.05      0.03      0.05      0.77      0.03
+  suno                    0.16      0.16      0.11      0.15      0.09      0.33
+
+LEVEL 3B - gen6 model on the holdout (Suno is unknown)
+  609 clips
+  false alarm on known clips (predicted 'unknown'): 0.030
+  unknown group 'suno' detected as unknown: 0.481
+
+  where each source goes (share of its clips)
+                          real  musicgen  musicldm audioldm2 stable_au  mustango   unknown
+  real                    0.74      0.05      0.02      0.05      0.08      0.05      0.02
+  musicgen                0.02      0.79      0.03      0.08      0.03      0.03      0.02
+  musicldm                0.02      0.07      0.66      0.08      0.02      0.10      0.07
+  audioldm2               0.02      0.07      0.05      0.77      0.03      0.02      0.05
+  stable_audio_open       0.03      0.02      0.02      0.05      0.84      0.05      0.00
+  mustango                0.02      0.00      0.02      0.02      0.03      0.89      0.03
+  suno                    0.07      0.07      0.11      0.10      0.09      0.08      0.48
